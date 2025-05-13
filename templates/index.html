@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0288d1;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0277bd;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .weather {
+      margin-top: 20px;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .weather h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .weather p {
+      margin: 6px 0;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🌤 Weather Checker</h2>
+    <form method="post">
+      <input type="text" name="city" placeholder="Enter city name" required>
+      <input type="submit" value="Check Weather">
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if weather %}
+      <div class="weather">
+        <h3>Weather in {{ weather.city }}</h3>
+        <p>🌡 Temperature: {{ weather.temp }}°C</p>
+        <p>🌥 Description: {{ weather.desc }}</p>
+        <p>💧 Humidity: {{ weather.humidity }}%</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
